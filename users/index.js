@@ -2,12 +2,31 @@ const router = require("express").Router();
 const { userAccounts } = require("./user-accounts");
 
 router.post("/", (request, response, next) => {
-  const user = userAccounts.login(request.body.username, request.body.password);
-
   setTimeout(() => {
-    if (!user) response.status(404).send("Неверный пароль или логин");
-    response.status(200).send(user);
+    const user = userAccounts.login(
+      request.body.username,
+      request.body.password
+    );
+
+    if (user === undefined)
+      response.status(404).send("Такой пользователь не зарегестрирован");
+    else if (user === null) response.status(404).send("Неверный пароль");
+    else if (user) response.status(200).send(user);
   }, 500);
+});
+
+router.post("/registration", (request, response, next) => {
+  setTimeout(() => {
+    if (!userAccounts.doesUserExist(request.body.username)) {
+      const newAccount = userAccounts.registrate(
+        request.body.username,
+        request.body.password
+      );
+      response.status(201).send(newAccount);
+    } else {
+      response.status(409).send("Позьзователь с таким ником уже существует");
+    }
+  }, 1200);
 });
 
 module.exports = router;
