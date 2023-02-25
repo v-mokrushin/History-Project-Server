@@ -1,10 +1,12 @@
 const bcrypt = require("bcrypt");
 
 function getUniqueId() {
-  Date.now().toString(36) +
+  return (
+    Date.now().toString(36) +
     Math.floor(
       Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)
-    ).toString(36);
+    ).toString(36)
+  );
 }
 
 class UserAccounts {
@@ -15,7 +17,7 @@ class UserAccounts {
       passwordHash:
         "$2a$10$6TdhLfMMM/hbyPQ9r4E.Bu/eIdmx1HKB8YEeI63AaS7CBKmArqBLm",
       avatar:
-        "https://sun9-west.userapi.com/sun9-15/s/v1/ig2/x1fWlb8M2-5AwmyD_RPV5BO2dCJ3CUTO-PxuFqqWtexhfoREodJ5Nm33S_G4hwthLyU5caadsISSbkuPYD0C4jaO.jpg?size=1620x2160&quality=95&type=album",
+        "https://sun9-west.userapi.com/sun9-62/s/v1/ig2/JeGBPLAHWop4z0qCasQX_ECpaNJE6qb_W6hQWKyvraOYIhliQKdKbFxRDscG-Mo-WGWSLesx5ljkqaMil-ER5vwJ.jpg?size=494x497&quality=95&type=album",
       name: "Вадим",
       surname: "Мокрушин",
       registrationDate: new Date(),
@@ -44,6 +46,20 @@ class UserAccounts {
     };
     this.data.push(newAccount);
     return { ...newAccount, passwordHash: undefined };
+  }
+
+  updateUserInfo(id, name, surname, avatar) {
+    const user = this.data.find((user) => user.id === id);
+
+    if (user) {
+      user.name = name;
+      user.surname = surname;
+      user.avatar = avatar;
+
+      return true;
+    } else {
+      return false;
+    }
   }
 
   doesUserExist(username) {
