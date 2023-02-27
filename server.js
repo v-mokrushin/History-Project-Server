@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const articles = require("./articles");
 const users = require("./users");
+const weapons = require("./weapons");
 
 app.use(cors({ origin: true }));
 app.options("*", cors());
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 app.use("/articles", articles);
 app.use("/users", users);
+app.use("/weapons", weapons);
 app.use("/public", express.static("public"));
 
 // const options = {
@@ -25,4 +27,4 @@ app.use("/public", express.static("public"));
 // };
 
 app.listen(8080);
-// https.createServer(options, app).listen(8443);
+// https.createServer(options, app).listen(8080);
