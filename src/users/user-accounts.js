@@ -1,13 +1,5 @@
 const bcrypt = require("bcrypt");
-
-function getUniqueId() {
-  return (
-    Date.now().toString(36) +
-    Math.floor(
-      Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)
-    ).toString(36)
-  );
-}
+const { getUniqueId } = require("../utils");
 
 class UserAccounts {
   data = [

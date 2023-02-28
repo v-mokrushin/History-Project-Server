@@ -38,7 +38,7 @@ router.post("/registration", (request, response, next) => {
       );
       response.status(201).send(newAccount);
     } else {
-      response.status(409).send("Позьзователь с таким ником уже существует");
+      response.status(409).send("Никнейм занят");
     }
   }, 1200);
 });
