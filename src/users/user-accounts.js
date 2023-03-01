@@ -14,7 +14,37 @@ class UserAccounts {
       surname: "Мокрушин",
       registrationDate: new Date(),
     },
+    {
+      id: "0001",
+      username: "Zhukov",
+      passwordHash:
+        "$4a$10$6TdhLfMMM/hbyPQ9r4E.Bu/eIdmx1HKB8Y2eI63AaS7CBKmArqBLm",
+      avatar: "https://stihi.ru/pics/2020/05/09/2330.jpg",
+      registrationDate: new Date(),
+    },
+    {
+      id: "0002",
+      username: "Konev",
+      passwordHash:
+        "$da$10$6TdhLfMMM/hbyPQ9r4E.Bu/eIdmx1HKd8YEeI63AaS7CBKmArqBLm",
+      avatar:
+        "https://cdnmundo1.img.sputniknews.com/img/109101/04/1091010461_0:14:2048:2399_2048x2385_80_0_0_0c037a3f49db07b313c1f4a0d267f93a.jpg",
+      registrationDate: new Date(),
+    },
+    {
+      id: "0003",
+      username: "Heinz-Wilhelm-Guderian",
+      passwordHash:
+        "$Ua$10$6TdhLfMMM/hbyPQ9r4E.Bu/3Idmx1HKB8YEeI63AaS7CBKmArqBLm",
+      avatar:
+        "https://upload.wikimedia.org/wikipedia/commons/1/17/German_General_Heinz_Guderian%2C_possibly_in_Russia%2C_c._1944._%2841575739691%29.jpg",
+      registrationDate: new Date(),
+    },
   ];
+
+  getById(id) {
+    return this.data.find((user) => user.id === id);
+  }
 
   login(username, password) {
     const accountInformation = this.data.find(

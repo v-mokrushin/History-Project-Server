@@ -7,6 +7,8 @@ const cors = require("cors");
 const articles = require("./articles");
 const users = require("./users");
 const weapons = require("./weapons");
+const views = require("./views");
+const comments = require("./comments");
 
 app.use(cors({ origin: true }));
 app.options("*", cors());
@@ -19,6 +21,8 @@ app.get("/", (req, res) => {
 app.use("/articles", articles);
 app.use("/users", users);
 app.use("/weapons", weapons);
+app.use("/views", views);
+app.use("/comments", comments);
 app.use("/public", express.static("public"));
 
 // const options = {
