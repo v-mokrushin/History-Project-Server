@@ -13,6 +13,7 @@ class UserAccounts {
       name: "Вадим",
       surname: "Мокрушин",
       registrationDate: new Date(),
+      viewsHistory: ["Т-34-85", "Pz.Kpfw.-V-Ausf.G-Panther", "ИС-2"],
     },
     {
       id: "0001",
@@ -41,6 +42,12 @@ class UserAccounts {
       registrationDate: new Date(),
     },
   ];
+
+  constructor() {
+    this.data.forEach((account) => {
+      if (!account.viewsHistory) account.viewsHistory = [];
+    });
+  }
 
   getById(id) {
     return this.data.find((user) => user.id === id);
@@ -86,6 +93,15 @@ class UserAccounts {
 
   doesUserExist(username) {
     return !!this.data.find((user) => user.username === username);
+  }
+
+  setViewHistory(userId, viewsHistory) {
+    const user = this.data.find((user) => user.id === userId);
+
+    if (user) {
+      user.viewsHistory = viewsHistory;
+      console.log(user);
+    }
   }
 }
 

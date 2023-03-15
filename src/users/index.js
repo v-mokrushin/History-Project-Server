@@ -28,7 +28,7 @@ router.patch("/", (request, response, next) => {
       req.surname,
       req.avatar
     );
-    if (operationStatus) response.status(200).send(); 
+    if (operationStatus) response.status(200).send();
     else response.status(400).send("Неудалось обновить данные");
   }, 500);
 });
@@ -45,6 +45,10 @@ router.post("/registration", (request, response, next) => {
       response.status(409).send("Никнейм занят");
     }
   }, 1200);
+});
+
+router.post("/set-views-history", (request, response, next) => {
+  userAccounts.setViewHistory(request.body.userId, request.body.viewsHistory);
 });
 
 module.exports = router;
